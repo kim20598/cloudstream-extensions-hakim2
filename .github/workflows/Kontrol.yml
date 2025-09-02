@@ -42,9 +42,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -U setuptools wheel Kekik cloudscraper pycryptodome
 
-      - name : Betiği Çalıştır
+       - name : Betiği Çalıştır
         run  : |
-          python KONTROL.py
+          if [ -f "KONTROL.py" ]; then
+            python KONTROL.py
+          else
+            echo "Warning: KONTROL.py script not found. Skipping domain checks."
+          fi
 
       - name : Değişiklik Kontrolü
         id   : degisiklik_kontrol
